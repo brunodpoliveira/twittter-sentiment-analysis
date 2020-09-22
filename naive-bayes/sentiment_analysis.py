@@ -1,8 +1,8 @@
 import json
 import tweepy
 import nltk
-from preprocess import PreProcessTweet
-from search_fixed import buildtestset
+from pre_process import PreProcessTweet
+from search_fixed import build_test_set
 
 # ------------------------------------------------------------------------
 
@@ -14,92 +14,93 @@ auth.set_access_token(creds['ACCESS_TOKEN'], creds['ACCESS_SECRET'])
 api = tweepy.API(auth)
 # ------------------------------------------------------------------------
 
-testdataset = buildtestset()
+test_data_set = build_test_set()
 
 
 # ------------------------------------------------------------------------
 
-def buildtrainingset(corpusfile, tweetdatafile):
+def build_training_set(corpus_file, tweet_data_file):
     import csv
 
     corpus = []
 
-    with open(corpusfile, 'r') as csvfile:
-        linereader = csv.reader(csvfile, delimiter=',', quotechar="\"")
-        for row in linereader:
+    with open(corpus_file, 'r') as csv_file:
+        line_reader = csv.reader(csv_file, delimiter=',', quotechar="\"")
+        for row in line_reader:
             corpus.append({"tweet_id": row[2], "label": row[1], "topic": row[0]})
 
-    trainingdataset = []
+    training_data_set = []
 
     for tweet in corpus:
         try:
             pass
-            #status = api.get_status(tweet['tweet_id'])
-            #print('Tweet fetched' + status.text)
-            #tweet['text'] = status.text
-            #trainingdataset.append(tweet)
+            # status = api.get_status(tweet['tweet_id'])
+            # print('Tweet fetched' + status.text)
+            # tweet['text'] = status.text
+            # training_data_set.append(tweet)
         except:
             continue
     # write the tweets to empty CSV file
-    with open(tweetdatafile, 'w') as csvfile:
-        linewriter = csv.writer(csvfile, delimiter=',', quotechar="\"")
-        for tweet in trainingdataset:
+    with open(tweet_data_file, 'w') as csv_file:
+        line_writer = csv.writer(csv_file, delimiter=',', quotechar="\"")
+        for tweet in training_data_set:
             try:
                 pass
-                #linewriter.writerow([tweet["tweet_id"], tweet["text"], tweet["label"], tweet["topic"]])
+                # line_writer.writerow([tweet["tweet_id"], tweet["text"], tweet["label"], tweet["topic"]])
             except Exception as e:
                 print(e)
-    return trainingdataset
+    return training_data_set
 
 
 # ------------------------------------------------------------------------
 
 
-def buildvocabulary(preprocessedtrainingdata):
+def build_vocabulary(pre_processed_training_data):
     all_words = []
+    try:
 
-    for (words, sentiment) in preprocessedtrainingdata:
-        all_words.extend(words)
-    wordlist = nltk.FreqDist(all_words)
-    wordfeatures = wordlist.keys()
-
-    return wordfeatures
+        for (words, sentiment) in pre_processed_training_data:
+            all_words.extend(words)
+        word_list = nltk.FreqDist(all_words)
+        word_features = word_list.keys()
+    except Exception as e:
+        print("error build vocab")
 
 
 # ------------------------------------------------------------------------
 
 
-def extractfeatures(tweet):
-    tweetwords = set(tweet)
+def extract_features(tweet):
+    tweet_words = set(tweet)
     features = {}
-    for word in wordfeatures:
-        features['contain(%s)' % word] = (word in tweetwords)
+    for word in word_features:
+        features['contain(%s)' % word] = (word in tweet_words)
     return features
 
 
 # ------------------------------------------------------------------------
 
-corpusRead = './corpus.csv'
-tweetDataFileWrite = './tweetdatafile.csv'
-trainingdata = buildtrainingset(corpusRead, tweetDataFileWrite)
-# trainingdata = './tweetdatafile.csv'
+corpus_read = './corpus.csv'
+tweet_data_file_write = './tweet_data_file.csv'
+training_data = build_training_set(corpus_read, tweet_data_file_write)
+# training_data = './tweet_data_file.csv'
 
 
 # ------------------------------------------------------------------------
 
-tweetprocessor = PreProcessTweet()
-preprocessedtrainingset = tweetprocessor.processtweets(trainingdata)
-preprocessedtestdataset = tweetprocessor.processtweets(testdataset)
+tweet_processor = PreProcessTweet()
+pre_processed_training_set = tweet_processor.process_tweets(training_data)
+pre_processed_test_data_set = tweet_processor.process_tweets(test_data_set)
 
 # ------------------------------------------------------------------------
 
-wordfeatures = buildvocabulary(preprocessedtrainingdata)
-trainingfeatures = nltk.classify.apply_features(extractfeatures, preprocessedtrainingdata)
+word_features = build_vocabulary(pre_processed_training_set)
+training_features = nltk.classify.apply_features(extract_features, pre_processed_training_set)
 
 # ------------------------------------------------------------------------
 
-NBayesClassifier = nltk.NaiveBayesClassifier.train(trainingfeatures)
-NBResultsLabels = [NBayesClassifier.classify(extractfeatures(tweet[0])) for tweet in preprocessedtestdataset]
+NBayesClassifier = nltk.NaiveBayesClassifier.train(training_features)
+NBResultsLabels = [NBayesClassifier.classify(extract_features(tweet[0])) for tweet in pre_processed_test_data_set]
 # get the majority vote
 
 if NBResultsLabels.count('positive') > NBResultsLabels.count('negative'):
