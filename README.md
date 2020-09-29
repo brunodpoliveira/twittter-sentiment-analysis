@@ -2,7 +2,7 @@
 
 A sentiment analysis program, running on python, free and open-source.
 
-Following tutorial available on https://towardsdatascience.com/creating-the-twitter-sentiment-analysis-program-in-python-with-naive-bayes-classification-672e5589a7ed
+Following tutorial available on https://medium.com/@koshut.takatsuji/twitter-sentiment-analysis-with-full-code-and-explanation-naive-bayes-a380b38f036b
 
 Twitter credentials must be stored in data/twitter_credentials.json
 
