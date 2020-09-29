@@ -15,7 +15,7 @@ with open('data/twitter_credentials.json', 'r') as file:
 python_tweets = Twython(creds['CONSUMER_KEY'], creds['CONSUMER_SECRET'])
 
 
-def buildtestset():
+def build_test_set():
     # create query
 
     query = {'q': input("Type query:"),

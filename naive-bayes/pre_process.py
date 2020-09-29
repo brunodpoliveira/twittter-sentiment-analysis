@@ -13,7 +13,7 @@ class PreProcessTweet:
         processedtweets = []
         try:
             for tweet in listoftweets:
-                processedtweets.append((self._processtweet(tweet['text']), tweet['label']))
+                processedtweets.append((self._process_tweet(tweet['text']), tweet['label']))
         except Exception as e:
             print("error process tweets")
 
