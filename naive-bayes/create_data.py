@@ -32,16 +32,17 @@ error_count = 0
 # search params
 wait_query = 100
 wait_time = 2.0
-total_number = 15000
+total_number = 100
 # halt for x minutes just in case twitter throttles us
 just_in_case = 1
 text = [0] * total_number
 second_count = 0
-id_values = [1] * total_number
+# 1 - happy | 2 - sad | 3 - angry | 4 - fearful
+# adjust number before beggining program
+id_values = [4] * total_number
 
 # ------------------------------------------------------------------------
 
-# 1 - happy | 2 - sad | 3 - angry | 4 - fearful
 while second_count < total_number:
     try:
         user = next(users)
@@ -58,11 +59,11 @@ while second_count < total_number:
     except StopIteration:
         break
     try:
-        print('writing to json tweet number: ' + str(count))
+        # print('writing to json tweet number: ' + str(count))
         text_value = user._json['text']
         language = user._json['lang']
         print(text_value)
-        print(language)
+        # print(language)
 
         if 'RT' not in text_value:
             if language == 'en':
@@ -77,6 +78,7 @@ while second_count < total_number:
 
 print('creating dataframe:')
 d = {'text': text, 'id': id_values}
-df = pd.Dataframe(data=d)
-df.to_csv('upset.csv', header=True, index=False, encoding='utf-8')
+df = pd.DataFrame(data=d)
+# adjust file name before beggining program
+df.to_csv('data/fearful.csv', header=True, index=False, encoding='utf-8')
 print('complete')
