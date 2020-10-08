@@ -4,7 +4,7 @@ Modeled after OpenGovernment contributing guidelines https://github.com/opengove
 
 I'm really glad you're reading this, because we need volunteer developers to help this project come to fruition.
 
-If you haven't already, come find me in LinkedIn ([#LinkedIn](https://www.linkedin.com/in/bruno-daniel-pinheiro-de-oliveira-b4024859/).
+If you haven't already, come find me in LinkedIn ([#LinkedIn](https://www.linkedin.com/in/bruno-daniel-pinheiro-de-oliveira-b4024859/)).
 
 All of this project consists of Python code.
 
