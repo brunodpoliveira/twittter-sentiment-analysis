@@ -9,7 +9,7 @@ If you haven't already, come find me in LinkedIn ([#LinkedIn](https://www.linked
 All of this project consists of Python code.
 
 ## Submitting changes
-Please send a [GitHub Pull Request](https://https://github.com/brunodpoliveira/twittter-sentiment-analysis/pulls/new/main) with a clear list of what you've done. Please follow our coding conventions (below)
+Please send a [GitHub Pull Request](https://github.com/brunodpoliveira/twittter-sentiment-analysis/pull/new/main) with a clear list of what you've done. Please follow our coding conventions (below)
 
 Always write a clear log message for your commits.
 
