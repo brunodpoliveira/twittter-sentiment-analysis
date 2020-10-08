@@ -15,9 +15,8 @@ Always write a clear log message for your commits.
 
 ## Coding conventions
 
-Start reading our code and you'll get the hang of it.
+Start reading the code and you'll get the hang of it.
 
-  * We indent using one space (soft tabs)
   * All data must be stored in the data/ folder
   * File, variable and class names are written in lowercase, separated by an underline (word_bag, not wordbag or WordBag)
   * We ALWAYS put spaces after list items and method parameters (`[1, 2, 3]`, not `[1,2,3]`), around operators (`x += 1`, not `x+=1`), and around hash arrows.
