@@ -4,7 +4,7 @@ A sentiment analysis program, running on python, free and open-source.
 
 Following tutorial available on https://medium.com/@koshut.takatsuji/twitter-sentiment-analysis-with-full-code-and-explanation-naive-bayes-a380b38f036b
 
-Twitter credentials must be stored in data/twitter_credentials.json
+Twitter credentials must be stored in data/twitter_credentials.json - create this file using naive-bayes/credentials.py
 
 Sentiment Analysis refers to the use of Natural Language Processing to determine the attitude, opinions and emotions of a speaker, writer, or other subject within an online mention.
 
