@@ -2,7 +2,7 @@ from geopy.geocoders import Nominatim
 import gmplot
 from data_analysis_test import tweets
 
-geolocator = Nominatim(user_agent="test-app")
+geolocator = Nominatim(user_agent='test-app')
 
 # go through  tweets, add locs to coords dict
 coords = {'latitude': [], 'longitude': []}
@@ -25,4 +25,4 @@ gmap = gmplot.GoogleMapPlotter(30, 0, 3)
 gmap.heatmap(coords['latitude'], coords['longitude'], radius=20)
 
 # save the map to a html file
-gmap.draw("python_heatmap.html")
+gmap.draw('data/python_heatmap.html')

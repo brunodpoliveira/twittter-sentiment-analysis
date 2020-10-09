@@ -3,7 +3,7 @@ import csv
 import json
 
 # Load credentials from json file
-with open('twitter_credentials.json', 'r') as file:
+with open('data/twitter_credentials.json', 'r') as file:
     creds = json.load(file)
 
 

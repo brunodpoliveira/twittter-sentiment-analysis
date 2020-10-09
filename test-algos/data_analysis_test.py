@@ -2,7 +2,7 @@ import pandas as pd
 from collections import Counter
 import ast
 
-tweets = pd.read_csv("saved_tweets.csv")
+tweets = pd.read_csv('data/saved_tweets.csv')
 
 # Extract hashtags and put them in a list
 list_hashtag_strings = [entry for entry in tweets.hashtags]

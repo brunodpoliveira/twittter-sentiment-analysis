@@ -8,14 +8,14 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 pd.set_option('display.max_colwidth', None)
 
-with open("twitter_credentials.json", "r") as file:
+with open('data/twitter_credentials.json', 'r') as file:
     creds = json.load(file)
 
 # instantiate object
 python_tweets = Twython(creds['CONSUMER_KEY'], creds['CONSUMER_SECRET'])
 
 # create query
-query = {'q': 'trump',
+query = {'q': input("Type query:"),
          'result_type': 'popular',
          'count': 10,
          'lang': 'en',
