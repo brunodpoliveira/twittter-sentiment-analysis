@@ -24,22 +24,20 @@ count = 0
 start = 0
 error_count = 0
 
-# store data in "happy.json"
-# file = open('test.json','wb')
 
 # ------------------------------------------------------------------------
 
 # search params
 wait_query = 100
 wait_time = 2.0
-total_number = 100
+total_number = 15000
 # halt for x minutes just in case twitter throttles us
 just_in_case = 1
 text = [0] * total_number
 second_count = 0
-# 1 - happy | 2 - sad | 3 - angry | 4 - fearful
-# adjust number before beggining program
-id_values = [4] * total_number
+# 1 - happy | 2 - fun | 3 - joy | 4 - fearful | 5 - sad | 6 - angry
+# adjust number before starting program
+id_values = [1] * total_number
 
 # ------------------------------------------------------------------------
 
@@ -79,6 +77,6 @@ while second_count < total_number:
 print('creating dataframe:')
 d = {'text': text, 'id': id_values}
 df = pd.DataFrame(data=d)
-# adjust file name before beggining program
-df.to_csv('data/fearful.csv', header=True, index=False, encoding='utf-8')
+# adjust file name before starting program
+df.to_csv('data/happy.csv', header=True, index=False, encoding='utf-8')
 print('complete')
